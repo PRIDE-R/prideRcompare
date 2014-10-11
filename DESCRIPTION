@@ -1,4 +1,4 @@
-Package: prider-compare
+Package: prideRcompare
 Type: Package
 Title: prideR Compare
 Version: 1.0
@@ -7,6 +7,5 @@ Author: Jose A Dianes
 Maintainer: Jose A Dianes <jadianes@gmail.com>
 Imports:
     prider
-Description: Compare, calculate distances, and emerging functionality for PRIDE Archive 
-projects based on their experimental data
+Description: Calculate distances, and emerging functionality for ProjecSummary
 License: GPL-3
