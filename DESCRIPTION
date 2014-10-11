@@ -6,6 +6,6 @@ Date: 2014-10-11
 Author: Jose A Dianes
 Maintainer: Jose A Dianes <jadianes@gmail.com>
 Imports:
-    prider
+    prider, sets
 Description: Calculate distances, and emerging functionality for ProjecSummary
 License: GPL-3
