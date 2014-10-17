@@ -1,7 +1,7 @@
 prideRcompare
 =============
 
-An `R` package for comparing, and clustering [PRIDE Archive](http://www.ebi.ac.uk/pride/archive) 
+An `R` package for comparing and clustering [PRIDE Archive](http://www.ebi.ac.uk/pride/archive) 
 projects. 
 
 This package makes use of the [prideR](https://github.com/jadianes/prider) package.  
