@@ -63,7 +63,7 @@ we can use to find out clusters (e.g. 5 clusters) using:
 
 Or just plot:
 
-    plot(cancer.clusters.100.100, cancer.projects.100.accessions)
+    plot(cancer.clusters.100.100, cancer.projects.100.accessions, main="Clustering of latest 100 cancer projects")
 
 
 
