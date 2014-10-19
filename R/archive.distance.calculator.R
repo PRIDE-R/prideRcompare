@@ -1,26 +1,70 @@
-#' Returns the distance between a ProjectDetail instance and a list of target details
+#' Returns the distance between a project given by its accessions and the lates
+#' archive projects given by the PRIDE Archive web service
 #'
 #' @param source.project.accession the accession for the source project
 #' @param project.count the number of project to consider - default is 10
-#' @param protein.count the number of proteins to consider from each project - default is 100
+#' @param protein.count the number of proteins to consider from each 
+#' project - default is 100
 #' @return The distances simplified as a vector
 #' @author Jose A. Dianes
 #' @details TODO
+#' @import prider
 #' @export
-archive.accession.distance.retriever <- function(source.project.accession, project.count=10, protein.count=100) {
+archive.accession.distance.retriever <- function(source.project.accession, 
+                                                 project.count=10, 
+                                                 protein.count=100) {
+
     # first of all, get the source project protein details
-    source.project.protein.details <- get.list.ProteinDetail(source.project.accession, protein.count)
+    source.project <- get.ProjectSummary(
+        source.project.accession)
+
+    # now get the target project's
+    target.projects.list <- get.list.ProjectSummary(project.count)
+
+    # prepare results
+    results <- archive.project.distance.retriever(
+        source.project,
+        target.projects.list,
+        protein.count
+        )
+
+    return (results)
+    
+}
+
+#' Returns the distance between a ProjectSummary instance and a list of 
+#' target ProjectSummary instances
+#'
+#' @param source.project.accession the accession for the source project
+#' @param target.projects the number of project to consider - default is 10
+#' @param protein.count the number of proteins to consider from each 
+#' project - default is 100
+#' @return The distances simplified as a vector
+#' @author Jose A. Dianes
+#' @details TODO
+#' @import prider
+#' @export
+archive.project.distance.retriever <- function( source.project, 
+                                                target.projects.list, 
+                                                protein.count=100) {
+    
+    # first of all, get the source project protein details
+    source.project.protein.details <- get.list.ProteinDetail(
+        accession(source.project), protein.count)
     
     # now get the target project's
-    target.project.list <- get.list.ProjectSummary(project.count)
-    target.project.protein.detail.list <- lapply(target.project.list, function(x) { get.list.ProteinDetail(accession(x), protein.count)})
-        
+    target.projects.protein.details.list <- lapply(
+        target.projects.list, 
+        function(x) { get.list.ProteinDetail(accession(x), protein.count)}
+    )
+    
     # prepare results
-    results <- data.frame(project.accession=sapply(target.project.list, accession))
+    results <- distance.df.ProteinDetail(
+        source.project.protein.details,
+        sapply(target.projects.list, accession),
+        target.projects.protein.details.list
+    )
     
-    # calculate distances from source to each target
-    results$distance <- distance.list.ProteinDetail(source.project.protein.details, target.project.protein.detail.list)
-    
-    results
+    return (results)
     
 }
