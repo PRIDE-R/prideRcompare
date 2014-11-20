@@ -10,7 +10,7 @@ This package makes use of the [prideR](https://github.com/jadianes/prider) packa
 
 First, we need to install `devtools`:  
 
-    install.packages(devtools)
+    install.packages("devtools")
     library(devtools)
    
 Then we just call  
