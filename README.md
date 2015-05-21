@@ -65,5 +65,7 @@ Or just plot:
 
     plot(cancer.clusters.100.100, cancer.projects.100.accessions, main="Clustering of latest 100 cancer projects")
 
+### Examples  
 
+Some clustering examples can be found [here](https://github.com/PRIDE-R/pride-compare-examples).  
 
